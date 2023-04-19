@@ -12,10 +12,11 @@ object Drop {
     //elements.filterNot(p)
 
     @tailrec
-    def inner(elements: List[A], result: List[A]): List[A] =
-      if(elements.isEmpty) result
-      else if (p(elements.head)) inner(elements.tail, result)
-      else inner(elements.tail, result :+ elements.head)
+    def inner(elements: List[A], result: List[A]): List[A] = elements match {
+      case head :: tail if p(head) => inner(tail, result)
+      case head :: tail => inner(tail, result :+ head)
+      case Nil => result
+    }
 
     inner(elements, Nil)
   }

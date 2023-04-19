@@ -33,7 +33,7 @@ object NonTail2TailRecursion {
       numbers match {
         case x :: xs if x % 2 == 0 => inner(xs, acc :+ Math.pow(x, 3))
         case _ :: xs => inner(xs, acc)
-        case Nil     => List.empty
+        case Nil     => acc
       }
 
     inner(numbers, List())
